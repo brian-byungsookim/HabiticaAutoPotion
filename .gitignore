@@ -1,0 +1,10 @@
+# python
+*.pyc
+/bin/*
+/include/*
+/lib/*
+.Python
+.DS_Store
+pip-selfcheck.json
+
+p_config.py
