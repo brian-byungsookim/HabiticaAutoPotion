@@ -7,7 +7,7 @@ import p_config as config
 # GLOBAL VARIABLES
 WARN_THRESHOLD = 0.4
 
-def tracker():
+def tracker(event, context):
     
     habitica_result = requests.get(
                           routes.H_ANON_USER_URL,
@@ -26,15 +26,17 @@ def tracker():
             body="HP running low! Tried to auto-potion, but you're too poor to afford potions!"
         else:
             body="HP running low... but was able to auto-potion!"
+    else:
+        body = "No need to auto-potion today!"
 
-        email = get_email_from_pushbullet()
+    email = get_email_from_pushbullet()
 
-        pushbullet_result = requests.post(
-                                routes.P_CREATE_PUSH_URL,
-                                headers={"Access-Token": config.PUSHBULLET_API_KEY, "Content-Type": "application/json"},
-                                json={"type":"note", "title": config.APP_NAME, "body": body, "email": email}
-                            )
-        print json.dumps(pushbullet_result.json(), indent=4)        
+    pushbullet_result = requests.post(
+                            routes.P_CREATE_PUSH_URL,
+                            headers={"Access-Token": config.PUSHBULLET_API_KEY, "Content-Type": "application/json"},
+                            json={"type":"note", "title": config.APP_NAME, "body": body, "email": email}
+                        )
+    print json.dumps(pushbullet_result.json(), indent=4)        
 
     return json.dumps(user_json["stats"], indent=4)
 

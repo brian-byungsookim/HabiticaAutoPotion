@@ -5,6 +5,7 @@
 /lib/*
 .Python
 .DS_Store
+*.zip
 pip-selfcheck.json
 
 p_config.py
