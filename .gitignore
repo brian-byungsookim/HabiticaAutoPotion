@@ -3,9 +3,16 @@
 /bin/*
 /include/*
 /lib/*
+/test/*
 .Python
+
+# General
 .DS_Store
 *.zip
+.idea
+
+# pip
 pip-selfcheck.json
 
 p_config.py
+

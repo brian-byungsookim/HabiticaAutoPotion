@@ -1,5 +1,6 @@
 # APP VARS
 APP_NAME = "Habitica Auto Potion"
+WARN_THRESHOLD = 0.4  # or an integer for a flat value
 
 # API VARS
 HABITICA_USER_ID = "YOUR_HABITICA_ID"
