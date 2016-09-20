@@ -9,9 +9,7 @@ from hp_tracker import api_routes as routes, message_handler, health_checker
 
 class HabiticaAutoPotionApp:
 
-    def __init__(self, event, context):
-        self.event = event
-        self.context = context
+    def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.name = config.APP_NAME
         self.warn_threshold = config.WARN_THRESHOLD
@@ -93,16 +91,13 @@ class HabiticaAutoPotionApp:
 
         return pushbullet_user_info.json()["email"]
 
-    def run(self):
-        """
-        Main function to run the Habitica Auto-Potion App.
-        """
 
-        json_stats = self.tracker(self.event, self.context)
-        self.logger.info(json_stats)
+def run(event, context):
+    app = HabiticaAutoPotionApp()
+    app.tracker(event, context)
 
 
 if __name__ == "__main__":
 
-    app = HabiticaAutoPotionApp(None, None)
-    app.run()
+    main_app = HabiticaAutoPotionApp()
+    main_app.tracker(None, None)
